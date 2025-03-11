@@ -67,7 +67,7 @@ Makasih yaa udah biarin eqii tau banyakk tentang hidup kamuu. Cant wait to make 
             type="text"
             value={input}
             onChange={handleInputChange}
-            placeholder="Type 'i love youuu' to continue"
+            placeholder="i love youuu"
             className="w-full max-w-md px-4 py-2 bg-transparent border-2 border-pink-400 text-white rounded-full focus:outline-none focus:border-pink-500 text-center"
           />
         </div>
