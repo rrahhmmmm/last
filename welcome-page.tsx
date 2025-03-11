@@ -10,7 +10,7 @@ const ACCENT_COLOR = "#FF69B4" // Changed to a pink color for a softer look
 const WelcomePage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [input, setInput] = useState("")
   const [typedText, setTypedText] = useState("")
-  const typingSpeed = 50 // Slowed down for easier reading
+  const typingSpeed = 40 // Slowed down for easier reading
 
   const message = `Haii nadielaa, take care yaa, eqii selalu tunggu kamu pulang!!!!
 
@@ -53,7 +53,7 @@ Makasih yaa udah biarin eqii tau banyakk tentang hidup kamuu. Cant wait to make 
   return (
     <div className="relative w-full h-screen bg-black text-white font-sans flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-2xl space-y-8">
-        <h1 className="text-3xl md:text-4xl text-center text-pink-400 mb-8">Message for Nadiela</h1>
+        <h1 className="text-3xl md:text-4xl text-center text-pink-400 mb-8">Message for Mbadelll</h1>
         <div className="bg-gray-900 p-6 rounded-lg shadow-lg">
           <p
             className="text-sm sm:text-base md:text-lg leading-relaxed text-left whitespace-pre-line"
@@ -67,7 +67,7 @@ Makasih yaa udah biarin eqii tau banyakk tentang hidup kamuu. Cant wait to make 
             type="text"
             value={input}
             onChange={handleInputChange}
-            placeholder="Type 'i love you too' to continue"
+            placeholder="Type 'i love youuu' to continue"
             className="w-full max-w-md px-4 py-2 bg-transparent border-2 border-pink-400 text-white rounded-full focus:outline-none focus:border-pink-500 text-center"
           />
         </div>
