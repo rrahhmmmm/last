@@ -12,11 +12,7 @@ const WelcomePage: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [typedText, setTypedText] = useState("")
   const typingSpeed = 40 // Slowed down for easier reading
 
-  const message = `Haii nadielaa, take care yaa, eqii selalu tunggu kamu pulang!!!!
-
-Be nice to our relationship yaa, eqii yakinn deedull orang baikk eqi yakinn gaakan salah eqi percayain sepenuhnya ke dedull.
-
-Makasih yaa udah biarin eqii tau banyakk tentang hidup kamuu. Cant wait to make more more journeys with uu deeedullll, lovee uuuuu`
+  const message = `ketik anjing`
 
   useEffect(() => {
     let currentIndex = 0
@@ -45,7 +41,7 @@ Makasih yaa udah biarin eqii tau banyakk tentang hidup kamuu. Cant wait to make 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value)
-    if (e.target.value.toLowerCase() === "i love you too") {
+    if (e.target.value.toLowerCase() === "anjing") {
       onComplete()
     }
   }
@@ -67,7 +63,7 @@ Makasih yaa udah biarin eqii tau banyakk tentang hidup kamuu. Cant wait to make 
             type="text"
             value={input}
             onChange={handleInputChange}
-            placeholder="i love youuu"
+            placeholder="anjing"
             className="w-full max-w-md px-4 py-2 bg-transparent border-2 border-pink-400 text-white rounded-full focus:outline-none focus:border-pink-500 text-center"
           />
         </div>

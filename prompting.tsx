@@ -11,26 +11,19 @@ const LETTER_SPACING = 1
 const WORD_SPACING = 3
 
 const PIXEL_MAP = {
-  S: [
+  H: [
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
     [1, 1, 1, 1],
-    [1, 0, 0, 0],
-    [1, 1, 1, 1],
-    [0, 0, 0, 1],
-    [1, 1, 1, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
   ],
-  E: [
-    [1, 1, 1, 1],
-    [1, 0, 0, 0],
-    [1, 1, 1, 1],
-    [1, 0, 0, 0],
-    [1, 1, 1, 1],
-  ],
-  U: [
+  B: [
+    [1, 1, 1, 0],
     [1, 0, 0, 1],
+    [1, 1, 1, 0],
     [1, 0, 0, 1],
-    [1, 0, 0, 1],
-    [1, 0, 0, 1],
-    [1, 1, 1, 1],
+    [1, 1, 1, 0],
   ],
   D: [
     [1, 1, 1, 0],
@@ -39,26 +32,40 @@ const PIXEL_MAP = {
     [1, 0, 0, 1],
     [1, 1, 1, 0],
   ],
-  L: [
-    [1, 0, 0, 0],
-    [1, 0, 0, 0],
-    [1, 0, 0, 0],
-    [1, 0, 0, 0],
-    [1, 1, 1, 1],
-  ],
-  "<": [
-    [0, 0, 1],
+  A: [
     [0, 1, 0],
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 0, 1],
   ],
-  "3": [
-    [1, 1, 1],
+  N: [
+    [1, 0, 0, 1],
+    [1, 1, 0, 1],
+    [1, 0, 1, 1],
+    [1, 0, 0, 1],
+    [1, 0, 0, 1],
+  ],
+  J: [
     [0, 0, 1],
-    [0, 1, 1],
     [0, 0, 1],
+    [0, 0, 1],
+    [1, 0, 1],
+    [0, 1, 0],
+  ],
+  I: [
     [1, 1, 1],
+    [0, 1, 0],
+    [0, 1, 0],
+    [0, 1, 0],
+    [1, 1, 1],
+  ],
+  G: [
+    [0, 1, 1, 1],
+    [1, 0, 0, 0],
+    [1, 0, 1, 1],
+    [1, 0, 0, 1],
+    [0, 1, 1, 1],
   ],
 }
 
@@ -96,7 +103,6 @@ export function PromptingIsAllYouNeed() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
@@ -114,7 +120,7 @@ export function PromptingIsAllYouNeed() {
       const BALL_SPEED = 6 * scale
 
       pixelsRef.current = []
-      const words = ["SEE U", "DEEDULL <3"]
+      const words = ["HBD", "ANJING"]
 
       const calculateWordWidth = (word: string, pixelSize: number) => {
         return (
@@ -158,46 +164,25 @@ export function PromptingIsAllYouNeed() {
 
         let startX = (canvas.width - totalWidth) / 2
 
-        if (wordIndex === 1) {
-          word.split(" ").forEach((subWord) => {
-            subWord.split("").forEach((letter) => {
-              const pixelMap = PIXEL_MAP[letter as keyof typeof PIXEL_MAP]
-              if (!pixelMap) return
+        word.split("").forEach((letter) => {
+          const pixelMap = PIXEL_MAP[letter as keyof typeof PIXEL_MAP]
+          if (!pixelMap) return
 
-              for (let i = 0; i < pixelMap.length; i++) {
-                for (let j = 0; j < pixelMap[i].length; j++) {
-                  if (pixelMap[i][j]) {
-                    const x = startX + j * pixelSize
-                    const y = startY + i * pixelSize
-                    pixelsRef.current.push({ x, y, size: pixelSize, hit: false })
-                  }
-                }
-              }
-              startX += (pixelMap[0].length + LETTER_SPACING) * pixelSize
-            })
-            startX += WORD_SPACING * adjustedSmallPixelSize
-          })
-        } else {
-          word.split("").forEach((letter) => {
-            const pixelMap = PIXEL_MAP[letter as keyof typeof PIXEL_MAP]
-            if (!pixelMap) return
-
-            for (let i = 0; i < pixelMap.length; i++) {
-              for (let j = 0; j < pixelMap[i].length; j++) {
-                if (pixelMap[i][j]) {
-                  const x = startX + j * pixelSize
-                  const y = startY + i * pixelSize
-                  pixelsRef.current.push({ x, y, size: pixelSize, hit: false })
-                }
+          for (let i = 0; i < pixelMap.length; i++) {
+            for (let j = 0; j < pixelMap[i].length; j++) {
+              if (pixelMap[i][j]) {
+                const x = startX + j * pixelSize
+                const y = startY + i * pixelSize
+                pixelsRef.current.push({ x, y, size: pixelSize, hit: false })
               }
             }
-            startX += (pixelMap[0].length + LETTER_SPACING) * pixelSize
-          })
-        }
+          }
+          startX += (pixelMap[0].length + LETTER_SPACING) * pixelSize
+        })
+
         startY += wordIndex === 0 ? largeTextHeight + spaceBetweenLines : 0
       })
 
-      // Initialize ball position near the top right corner
       const ballStartX = canvas.width * 0.9
       const ballStartY = canvas.height * 0.1
 
@@ -318,7 +303,6 @@ export function PromptingIsAllYouNeed() {
 
     const drawGame = () => {
       if (!ctx) return
-
       ctx.fillStyle = BACKGROUND_COLOR
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -353,14 +337,7 @@ export function PromptingIsAllYouNeed() {
     }
   }, [])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full"
-      aria-label="See U Deedull <3: Fullscreen Pong game with pixel text"
-    />
-  )
+  return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full" aria-label="HBD ANJING" />
 }
 
 export default PromptingIsAllYouNeed
-
